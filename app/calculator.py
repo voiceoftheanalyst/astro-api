@@ -1,13 +1,31 @@
-import pyswisseph as swe
+import swisseph as swe
 import datetime
 from datetime import datetime, timezone
 import pandas as pd
 import math
+import os
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 class AstrologyCalculator:
     def __init__(self):
-        # Initialize Swiss Ephemeris with built-in ephemeris
-        swe.set_ephe_path(None)
+        try:
+            # Use the built-in ephemeris
+            swe.set_ephe_path(None)
+            logger.info("Using built-in Swiss Ephemeris")
+            
+            # Test if ephemeris is working
+            test_jd = swe.julday(2000, 1, 1, 0)
+            swe.calc_ut(test_jd, 0)  # Test Sun calculation
+            
+            logger.info("Successfully initialized Swiss Ephemeris")
+            
+        except Exception as e:
+            logger.error(f"Error initializing Swiss Ephemeris: {str(e)}")
+            raise
         
         self.zodiac_signs = [
             "♈ Aries", "♉ Taurus", "♊ Gemini", "♋ Cancer",
