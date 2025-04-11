@@ -88,6 +88,19 @@ To run tests:
 python -m pytest tests/
 ```
 
+## Deployment
+
+### Deploying to Render
+
+1. Create a new Web Service on Render
+2. Connect your GitHub repository
+3. Configure the following settings:
+   - Environment: Python
+   - Build Command: `pip install -r requirements.txt`
+   - Start Command: `gunicorn "app:app" --bind 0.0.0.0:$PORT`
+4. Add any necessary environment variables
+5. Deploy!
+
 ## License
 
 MIT License - see LICENSE file for details

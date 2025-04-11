@@ -6,7 +6,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Import routes after app is created to avoid circular imports
-from app import api
+from app.api import *
 
 # Register the routes
 app.register_blueprint(api.bp)

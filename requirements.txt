@@ -3,5 +3,5 @@ flask-cors
 python-dotenv
 pandas
 numpy
-swisseph
+pyswisseph
 gunicorn
